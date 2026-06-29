@@ -378,7 +378,7 @@ With a conventional centralized system, credentials are verified by calling back
 
 But, one of the important characteristics of verifiable credentials is that they should not be verified by a call back to a centralized system. Verifiable Credentials are instead verified by checking the cryptographic signature on the credential, which can be done anywhere, by anyone, with no need to call the central server. They are decentralized, removing dependence on the central system, and notably removing an opportunity for the issuer to control or monitor credential usage.
 
-Since we don't make a call back to the central server to verify the credential, we also don't want to make a call bqck to check for revocation. So how do we then know if it has been revoked? One approach is to publish a list of revoked credentials where the list simply contains anonymous (or pseudo-anonymous) ids of all revoked credentials. The verifier retrieves the list and checks to see if the credential is in the list. Crucially, the issuer can't know which credential is being verified because we retrieve the entire list. 
+Since we don't make a call back to the central server to verify the credential, we also don't want to make a call back to check for revocation. So how do we then know if it has been revoked? One approach is to publish a list of revoked credentials where the list simply contains anonymous (or pseudo-anonymous) ids of all revoked credentials. The verifier retrieves the list and checks to see if the credential is in the list. Crucially, the issuer can't know which credential is being verified because we retrieve the entire list. 
 
 The list can also be published in different places for redundancy, and also to make it harder for the issuer to monitor access to the list. The list could, for example, be published to a cdn.
 
@@ -386,9 +386,9 @@ The DCC advocates using a subtle variation to a simple list called a [Bitstring 
 
 ```00000000100000010100```
 
-Each character position in that string is assigned to a single credential when the credential is issued. If the character at that position is a zero then the credential is active (hasn't been revoked). If the charcter is a one then the credential has been revoked.
+Each character position in that string is assigned to a single credential when the credential is issued. If the character at that position is a zero then the credential is active (hasn't been revoked). If the character is a one then the credential has been revoked.
 
-So a verifier checking a credential has to download the right bitsting and then check the position in the string that has been allocated to the credential being checked.
+So a verifier checking a credential has to download the right bitstring and then check the position in the string that has been allocated to the credential being checked.
 
 A major advantage to the bistring status list is size - with only a single bit for each credential and with the advantages of compression, a very large list can compress down to a very small size.
 
